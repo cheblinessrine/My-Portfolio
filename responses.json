@@ -1,0 +1,43 @@
+
+{
+    "how old are you": {
+        "en": "I am as old as the internet!"
+    },
+    "كيف حالك": {
+        "ar": "أنا بخير، شكرًا لسؤالك"
+    },
+    "من أنت": {
+        "ar": "أنا نسرين وآية. أنا مطورة ومصممة مواقع الويب و تطبيقات الموبايل "
+    },
+    "أخبرني عن تجربتك": {
+        "ar": "أنا مطورة ومصممة ويب شغوفة  مع أكثر من خمس سنوات من الخبرة في إنشاء تجارب رقمية أنيقة وعملية تركز على المستخدم."
+    },
+    "au revoir": {
+        "fr": "Au revoir! Passez une bonne journée!"
+    },
+    "bonjour": {
+        "fr": "Bonjour! Comment puis-je vous aider?"
+    },
+    "who are you": {
+        "en": "I am  Nessrine and Aya, I am full stack developer and designer"
+    },
+    "tell me about your experience": {
+        "en": "I am a passionate web developer and designer with over 5 years of experience creating elegant, functional, and user-centered digital experiences. Focused on building applications with React, Vue, and other cutting-edge technologies"
+    },
+    "tell me about your skills": {
+        "en": "My technical skills include HTML CSS , JavaScript , ,PHP,Python, and UI UX Design .I also master some frameworks ​​such as laravel, django, bootstrap5, react and Tailwind CSS. I also have strong professional skills in communication, creativity, teamwork, and project management. Is there a specific skill you'd like to know more about?"
+    },
+    "what services do you provide": {
+        "en":"I offer a variety of services including web development, UI UX design, mobile app development, SEO optimization, content creation, and digital marketing. Each service is tailored to meet your specific needs and goals. Would you like to know more about any specific service?"
+    },
+    "how can we hire you": {
+        "en": "I'm currently available for freelance work and new projects! To hire me, please email me at chebli nesrine 69 @ gmail .com or dalashe aya 635 @ gmail.com with your project details, or contact me directly by phone at +2136987125883. I typically respond within 24 hours. Would you like to discuss a potential project?"
+    },
+    "what are the latest projects you have done": {
+        "en": "I have recently completed many projects, whether in web development, UI UX design, or mobile application development, for example, Travel Buddy Website,Fitness Tracker App, and many other projects that you can view through my account on GitHub."
+    },
+    "can you provide more details about your ecoshop e-commerce website project": {
+        "en": "yes, I can. Development of a fully responsive e-commerce platform for sustainable products. The website features a modern design, intuitive navigation, and seamless checkout process. Built with React js and Node js, with Stripe integration for payments. "
+    }
+
+}

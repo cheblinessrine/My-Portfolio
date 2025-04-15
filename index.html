@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="port" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/cv.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Portfolio</title>
+</head>
+<body>
+    <!-- Navbar -->   
+     
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Port<span>folio</span></div>
+            
+            <!-- Navbar Links -->
+            <div class="links" id="nav-links">
+                <a href="#home">Home</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+                
+                <a href="#contact">Contact</a>
+                <a href="javascript:void(0);" onclick="openChatbot()"><img src="images/chatbot.png" alt="Chatbot Icon" class="chatbot-icon" onclick="openChatbot()"></a>
+            </div>
+    
+            <!-- Hamburger Icon -->
+            <div class="hamburg" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="dropdown">
+        <div class="cancel" onclick="cancel()">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="links">
+            
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hidden Popup Chatbot Modal -->
+
+    <div id="chatbotModal" class="modal">
+        <div class="modal-contentt">
+            
+            <!-- HISTORY SIDEBAR -->
+            <div id="chatHistory" class="history-sidebar">
+                <h3> Chat History </h3>
+                <div id="historyMessages"></div>
+            </div>
+    
+            <!-- HISTORY BUTTON -->
+            <button id="historyButton" class="history-btn" onclick="toggleHistory()">
+                <img src="images/symbole-dinterface-dhistorique-de-navigation-dune-horloge-avec-une-fleche.png" alt="History" />
+            </button>
+    
+            <!-- CLOSE BUTTON -->
+            <span class="close-btn" onclick="closeChatbot()">&times;</span>
+
+            <!-- DARK/LIGHT MODE TOGGLE BUTTON -->
+            <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()">🌓</button>
+    
+            <!-- CHATBOT SECTION -->
+            <section id="chatbot">
+                <h2>
+                    <span class="emoji-bounce">🤖</span> 
+                    <span class="chatbot-title-text">How can I help you today ?</span> 
+                    <span class="emoji-pulse">💬</span>
+                  </h2>
+                  
+                  
+                <div class="input-container">
+                    <span id="emojiUser" class="emoji-wave">🧑</span>
+                    <input type="text" id="userInput" placeholder="Ask me anything..." oninput="animateUserEmoji()">
+                    <button onclick="askAIFromInput()" class="icon-btn">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+                
+                <p id="ai-response">[Chatbot response will appear here]</p>
+            </section>
+        </div>
+    </div>
+    
+
+    <!--home-->
+    <section id="home">
+        <div class="main-container">
+            <div class="image">
+                <img src="images/main2.png" alt="Profile Photo">
+            </div>
+            <div class="content">
+                <h1>Hi I'm <span>Nessrine & Aya</span></h1>
+                <div class="typewriter">
+                    I'm a <span class="typewriter-text"></span>
+                </div>
+                <p>I'm a passionate web developer and designer with over 5 years of experience creating elegant, functional, and user-centered digital experiences. Focused on building applications with React, Vue, and other cutting-edge technologies. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam aliquam dolor, illum debitis eos iusto nulla magni expedita consectetur impedit et omnis fugit excepturi dolores sit ullam possimus. Expedita, quasi!.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1YJRwCnsiz/" target="_blank" id="facebook-link" class="w-12 h-12 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white flex items-center justify-center transition-all">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="https://x.com/ne_ss_ri_ne_213?t=SMeSXtKyRj_I99hS9rZKzg&s=09" target="_blank" id="twitter-link" class="w-12 h-12 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white flex items-center justify-center transition-all">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=5c5c1lu" target="_blank" id="instagram-link" class="w-12 h-12 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white flex items-center justify-center transition-all">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCcIJWyQA9sXNe9iLzFFCklw" target="_blank" 
+                        id="youtube-link" 
+                        class="w-12 h-12 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white flex items-center justify-center transition-all">
+                            <i class="fa-brands fa-youtube"></i>
+                    </a>
+
+                    <a href="https://github.com/cheblinessrine" target="_blank" id="github-link"><i class="fab fa-github"></i></a>
+                </div>
+                <a href="Aya_Dalache_Resume.pdf"style="text-decoration: none;" download="Aya_Dalache_Resume.pdf" onclick="event.preventDefault(); window.location.href='Aya_Dalache_Resume.pdf';">
+                    <button class="download-btn">Download CV</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!--skills-->
+    <section id="skills">
+        <h2 class="section-title">My <span>Skills</span></h2>
+        <div class="skills-container">  
+            <div class="skills-content">
+                <div class="skills-right">
+                    <div class="professional-skills">
+                        <h3>Professional Skills</h3>
+                        <div class="skills-container">
+                            <div class="skill">
+                                <div class="circle" data-percent="90"></div>
+                                <p>Creativity</p>
+                            </div>
+                            <div class="skill">
+                                <div class="circle" data-percent="65"></div>
+                                <p>Communication</p>
+                            </div>
+                            <div class="skill">
+                                <div class="circle" data-percent="75"></div>
+                                <p>Problem Solving</p>
+                            </div>
+                            <div class="skill">
+                                <div class="circle" data-percent="85"></div>
+                                <p>Teamwork</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-left">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <img src="images/html-5.png" alt="HTML">
+                                <p>HTML</p>
+                            </div>
+                            <p class="skill-percentage">98%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 98%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <img src="images/css-3.png" alt="HTML">
+                                <p>CSS</p>
+                            </div>
+                            <p class="skill-percentage">98%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 98%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <img src="images/script-java.png" alt="HTML">
+                                <p>Javascript</p>
+                            </div>
+                            <p class="skill-percentage">72%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 72%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <img src="images/php.png" alt="HTML">
+                                <p>PHP</p>
+                            </div>
+                            <p class="skill-percentage">78%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 78%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <img src="images/python (1).png" alt="HTML">
+                                <p>Python</p>
+                            </div>
+                            <p class="skill-percentage">90%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <img src="images/django.svg" alt="HTML">
+                                <p>Django</p>
+                            </div>
+                            <p class="skill-percentage">85%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <i class="fa-brands fa-laravel" style="color: #f52929;"></i>
+                                <p>Laravel</p>
+                            </div>
+                            <p class="skill-percentage">60%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <i class="fa-brands fa-react" style="color: #74C0FC;"></i>
+                                <p>React</p>
+                            </div>
+                            <p class="skill-percentage">68%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 68%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <img src="images/designer.png" alt="HTML">
+                                <p>UI/UX Design</p>
+                            </div>
+                            <p class="skill-percentage">75%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 75%;"></div>
+                        </div>
+                    </div>                      
+            </div>
+        </div>
+    </section>
+
+    <!--Services-->
+    <section id="services">
+        <div class="services-container">
+            <h2 class="section-title">My <span>Services</span></h2>
+            <div class="services-content">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Creating responsive and user-friendly websites with clean code and modern technologies like React, Laravel, Bootstrap5 and Django.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Designing intuitive and engaging user interfaces that enhance user experience and align with your brand identity.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <p>Building cross-platform mobile applications with React Native or native development for iOS and Android platforms.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO Optimization</h3>
+                    <p>Improving website visibility and ranking on search engines through effective SEO techniques and content strategies.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Content Creation</h3>
+                    <p>Producing high-quality content including graphics, videos, and written material for your digital platforms.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p>Developing comprehensive digital marketing strategies to increase your online presence and engage your target audience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--project-->
+    <section id="projects">
+        <div class="projects-container">
+            <h2 class="section-title">Latest <span>Projects</span></h2>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ui-design">UI Design</button>
+                <button class="filter-btn" data-filter="web-dev">Web Dev</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-item ui-design">
+                    <div class="project-image">
+                        <img src="images/high-protein-meal-with-smartphone-arrangement.jpg" alt="Foodie App UI">
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3>Foodie App Redesign</h3>
+                                <p>UI/UX Design</p>
+                                <button class="view-project-btn" data-id="project1">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-item web-dev">
+                    <div class="project-image">
+                        <img src="images/6873171.jpg" alt="E-commerce Website">
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3>Ecoshop E-commerce</h3>
+                                <p>Web Development</p>
+                                <button class="view-project-btn" data-id="project2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-item mobile ui-design">
+                    <div class="project-image">
+                        <img src="images/fittness.jpg" alt="Mindfulness App">
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3>Mindfulness App</h3>
+                                <p>UI/UX Design</p>
+                                <button class="view-project-btn" data-id="project3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="project-item web-dev">
+                    <div class="project-image">
+                        <img src="images/2955695.jpg" alt="Travel Buddy">
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3>Travel Buddy Website</h3>
+                                <p>Web Development</p>
+                                <button class="view-project-btn" data-id="project4">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 5 -->
+                <div class="project-item mobile ui-design">
+                    <div class="project-image">
+                        <img src="images/3864158.jpg" alt="Fitness Tracker App">
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3>Fitness Tracker App</h3>
+                                <p>UI/UX Design</p>
+                                <button class="view-project-btn" data-id="project5">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 6 -->
+                <div class="project-item web-dev">
+                    <div class="project-image">
+                        <img src="images/3219080.jpg" alt="Portfolio Dashboard">
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h3>Finance Dashboard</h3>
+                                <p>Web Development</p>
+                                <button class="view-project-btn" data-id="project6">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project Modal Template -->
+        <div class="project-modal" id="projectModal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="modal-body">
+                    <div class="modal-image-container">
+                        <img id="modalImage" src="" alt="Project Image">
+                    </div>
+                    <div class="modal-details">
+                        <h2 id="modalTitle"></h2>
+                        <p class="modal-category" id="modalCategory"></p>
+                        <div class="modal-description" id="modalDescription"></div>
+                        <div class="modal-meta">
+                            <div class="meta-item">
+                                <h4>Client</h4>
+                                <p id="modalClient"></p>
+                            </div>
+                            <div class="meta-item">
+                                <h4>Date</h4>
+                                <p id="modalDate"></p>
+                            </div>
+                            <div class="meta-item">
+                                <h4>Skills</h4>
+                                <p id="modalSkills"></p>
+                            </div>
+                        </div>
+                        <!-- Visit Project button has been removed from here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h2 class="section-title">Contact <span>Me</span></h2>
+    
+    <footer id="contact">
+        <div class="footer-content">
+            <!-- Left: Footer Logo & Contact Info -->
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <h2>Port<span>folio</span></h2>
+                    <h3>Let's work together</h3>
+                    <p>Feel free to reach out to me for any inquiries or project collaborations. I'd love to hear from you!</p>
+                </div>
+    
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            
+                            <p>dalacheaya635@gmail.com</p>
+                            <p>cheblinesrine69@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            
+                            <p>+2136987125883</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Middle: Quick Links -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+    
+            <!-- Right: Contact Form -->
+            <div class="footer-social">
+                <div class="form">
+                    <h3>Contact us</h3>
+                    <form action="https://formspree.io/f/myzedbzy" method="POST">
+                        <input class="a1" type="email" name="email" placeholder="Your email" required><br>
+                        <input class="a1" type="text" name="phone" placeholder="Your phone number"><br>
+                        <textarea name="message" placeholder="Your problem"></textarea><br>
+                        <input class="send" type="submit" value="Send">
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
