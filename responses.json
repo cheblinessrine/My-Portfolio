@@ -1,4 +1,10 @@
 {
+    "hi": {
+        "en": "Hi there! How can I help you today?"
+    },
+    "hello": {
+        "en": "Hello! Nice to meet you. What can I do for you?"
+    },
     "how old are you": {
         "en": "I am as old as the internet!"
     },
