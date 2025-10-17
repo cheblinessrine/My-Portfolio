@@ -14,157 +14,6 @@ document.querySelectorAll('.links a').forEach(link => {
     });
 });
 
-
-
-
-function openChatbot() {
-    document.getElementById("chatbotModal").style.display = "block";
-}
-
-function closeChatbot() {
-    document.getElementById("chatbotModal").style.display = "none";
-}
-
-
-// Load predefined responses from a JSON file
-let responses = {};
-
-fetch("responses.json")
-    .then(response => response.json())
-    .then(data => {
-        responses = data;
-    })
-    .catch(error => console.error("Error loading responses:", error));
-
-//  Function to detect language based on text
-function detectLanguage(text) {
-    text = text.toLowerCase().trim();
-
-    // 1️⃣ Check for Arabic script
-    if (/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(text)) {
-        return "ar";
-    }
-    
-    // 2️⃣ Check for French diacritics or common words
-    if (/[éèêëàâäîïôöùûüçœæ]/.test(text) || 
-        text.includes("bonjour") || text.includes("au revoir") || text.includes("merci")) {
-        return "fr";
-    }
-
-    // 3️⃣ Default to English
-    return "en";
-}
-
-
-//  Function to get the correct response in the detected language
-function getResponse(input) {
-    let lang = detectLanguage(input);
-    let normalizedInput = input.toLowerCase().trim();
-
-    console.log("Detected Language:", lang); // Debugging log
-    console.log("Normalized Input:", normalizedInput); // Debugging log
-
-    //  Check if the exact phrase exists in the JSON for the detected language
-    if (responses[normalizedInput] && responses[normalizedInput][lang]) {
-        return responses[normalizedInput][lang];
-    }
-
-    //  If not found, return a default fallback message
-    return {
-        "ar": "عذرًا، لم أفهم ذلك. هل يمكنك إعادة الصياغة؟",
-        "fr": "Désolé, je n'ai pas compris. Pouvez-vous reformuler?",
-        "en": "Sorry, I didn't understand that. Can you rephrase?"
-    }[lang];
-}
-
-//  Fix for Speech Output (Works for All Languages)
-function speak(text, lang, callback) {
-    if (!window.speechSynthesis) {
-        console.error("❌ Speech Synthesis API not supported");
-        if (callback) callback();
-        return;
-    }
-
-    let speech = new SpeechSynthesisUtterance();
-    speech.text = text;
-    speech.lang = lang === "ar" ? "ar-SA" : lang === "fr" ? "fr-FR" : "en-US";
-    speech.rate = 1;
-    speech.pitch = 1;
-    speech.volume = 1;
-
-    speech.onend = function () {
-        if (callback) callback(); // Call function after speaking
-    };
-
-    window.speechSynthesis.speak(speech);
-}
-
-//  Function to process text-based input
-let chatHistory = [];
-function askAIFromInput() {
-    let userInputField = document.getElementById("userInput");
-    let userInput = userInputField.value.trim();
-
-    if (userInput === "") return;
-
-    let lang = detectLanguage(userInput);
-    let response = getResponse(userInput);
-
-    let responseBox = document.getElementById("ai-response");
-    responseBox.innerText = "🤖:  " + response;
-
-    // Speak the response, and clear after it finishes
-    speak(response, lang, () => {
-        responseBox.innerText = "";
-    });
-
-    // Save to history
-    chatHistory.push({ userInput, aiResponse: response });
-
-    setTimeout(() => {
-        userInputField.value = "";
-    }, 1000);
-
-    displayHistory();
-}
-
-
-function toggleHistory() {
-    const history = document.getElementById("chatHistory");
-    history.classList.toggle("open"); // Toggle sidebar class
-}
-
-function displayHistory() {
-    const historyDiv = document.getElementById("historyMessages");
-    historyDiv.innerHTML = "";
-
-    chatHistory.forEach(item => {
-        const msg = document.createElement("div");
-        msg.classList.add("history-item");
-        msg.innerHTML = `<strong>🧑:</strong> ${item.userInput}<br><strong>🤖:</strong> ${item.aiResponse}`;
-        historyDiv.appendChild(msg);
-    });
-}
-
-function animateUserEmoji() {
-    const emoji = document.getElementById("emojiUser");
-    emoji.classList.add("animate-wave");
-
-    // Remove class after animation ends to allow repeat on next input
-    setTimeout(() => {
-        emoji.classList.remove("animate-wave");
-    }, 1300);
-}
-
-
-//DARK LIGHT MODE
-function toggleTheme() {
-    const modal = document.getElementById("chatbotModal");
-    modal.classList.toggle("dark-mode");
-}
-
-
-
 // Navigation Functions
 function hamburg() {
     const navbar = document.querySelector(".dropdown");
@@ -180,7 +29,7 @@ function cancel() {
 const texts = [
     "DEVELOPER",
     "DESIGNER",
-    "YOUTUBER"
+    "DATA ANALYST",
 ];
 let speed = 100;
 let textElements, textIndex = 0, characterIndex = 0;
@@ -206,19 +55,11 @@ function eraseText() {
     }
 }
 
-
-// Chatbot Functionality
-
 document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize typewriter effect
     textElements = document.querySelector(".typewriter-text");
     if (textElements) typeWriter();
-    
-    // Chatbot elements
-    //const chatMessages = document.getElementById('chatMessages');
-    //const userInput = document.getElementById('userInput');
-    //const sendButton = document.getElementById('sendMessage');
     
     // Project portfolio data
     const projectData = {
@@ -359,21 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    
-    
-    
-   
-    
-   
-    
-    
-    
-    
-        
-    
-    
-        
-      
+
     
     // Animation for skill bars on scroll
     const skillBars = document.querySelectorAll('.progress-line');
@@ -404,48 +231,19 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(skillsSection);
     }
 });
-document.addEventListener("DOMContentLoaded", function () {
-    const skillsVideo = document.getElementById("skills-video");
-    const overlayTexts = document.querySelectorAll(".overlay-text");
 
-    if (!skillsVideo || overlayTexts.length === 0) return;
-
-    function resetOverlays() {
-        overlayTexts.forEach(text => {
-            text.style.opacity = "0";
-            text.style.transform = "translateY(20px)";
-        });
-    }
-
-    skillsVideo.addEventListener("timeupdate", function () {
-        const videoTime = skillsVideo.currentTime;
-        resetOverlays();
-
-        if (videoTime >= 5 && videoTime < 10) {
-            overlayTexts[0].style.opacity = "1";
-            overlayTexts[0].style.transform = "translateY(0)";
-        } else if (videoTime >= 10 && videoTime < 15) {
-            overlayTexts[1].style.opacity = "1";
-            overlayTexts[1].style.transform = "translateY(0)";
-        } else if (videoTime >= 15) {
-            overlayTexts[2].style.opacity = "1";
-            overlayTexts[2].style.transform = "translateY(0)";
+// Hire Me button - scroll to contact section (guarded)
+const hireBtn = document.querySelector('.content button');
+if (hireBtn) {
+    hireBtn.addEventListener('click', function() {
+        const contact = document.querySelector('#contact') || document.querySelector('footer#contact');
+        if (contact) {
+            contact.scrollIntoView({ behavior: 'smooth' });
         }
     });
+}
 
-    skillsVideo.addEventListener("pause", resetOverlays);
-    skillsVideo.addEventListener("ended", resetOverlays);
-});
-
-
-// Hire Me button - scroll to contact section
-document.querySelector('.content button').addEventListener('click', function() {
-    document.querySelector('#contact').scrollIntoView({ 
-        behavior: 'smooth' 
-    });
-});
-
-// Download CV button - show CV modal
+// Download CV button - show CV modal (guarded)
 document.addEventListener("DOMContentLoaded", function () {
     const cvModal = document.getElementById("cvModal");
     const closeCvModal = document.getElementById("closeCvModal");
@@ -453,35 +251,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const downloadBtns = document.querySelectorAll(".download-btn"); // Supports multiple download buttons
 
     // Open CV modal
-    downloadBtns.forEach(btn => {
-        btn.addEventListener("click", function () {
-            cvModal.classList.add("show");
-            document.body.style.overflow = "hidden"; // Prevent scrolling
+    if (downloadBtns && downloadBtns.length) {
+        downloadBtns.forEach(btn => {
+            btn.addEventListener("click", function () {
+                if (cvModal) {
+                    cvModal.classList.add("show");
+                    document.body.style.overflow = "hidden"; // Prevent scrolling
+                }
+            });
         });
-    });
+    }
 
     // Close CV modal
-    closeCvModal.addEventListener("click", function () {
-        cvModal.classList.remove("show");
-        document.body.style.overflow = "auto"; // Restore scrolling
-    });
+    if (closeCvModal && cvModal) {
+        closeCvModal.addEventListener("click", function () {
+            cvModal.classList.remove("show");
+            document.body.style.overflow = "auto"; // Restore scrolling
+        });
+    }
 
     // Close modal when clicking outside (but not inside content)
     window.addEventListener("click", function (event) {
-        if (event.target === cvModal) {
+        if (cvModal && event.target === cvModal) {
             cvModal.classList.remove("show");
             document.body.style.overflow = "auto";
         }
     });
 
     // Print CV functionality
-    printCV.addEventListener("click", function () {
-        cvModal.style.backgroundColor = "white"; // Hide dark background for print
-        setTimeout(() => {
-            window.print();
-            cvModal.style.backgroundColor = ""; // Restore background after print
-        }, 100);
-    });
+    if (printCV) {
+        printCV.addEventListener("click", function () {
+            if (!cvModal) return;
+            cvModal.style.backgroundColor = "white"; // Hide dark background for print
+            setTimeout(() => {
+                window.print();
+                cvModal.style.backgroundColor = ""; // Restore background after print
+            }, 100);
+        });
+    }
 });
 
 // skils circle
@@ -498,7 +305,116 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.querySelector("a[href='#portfolio-video']").addEventListener("click", function(event) {
-    event.preventDefault();
-    document.getElementById("portfolio-video").scrollIntoView({ behavior: "smooth" });
-});
+// Replace fragile portfolio-video link handler with a guard
+const portfolioLink = document.querySelector("a[href='#portfolio-video']");
+if (portfolioLink) {
+    portfolioLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        const target = document.getElementById("portfolio-video");
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+    });
+}
+
+/* Chatbot toggle  */
+(function () {
+    // wait until DOM ready (script.js already runs at end but guard anyway)
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('chat-toggle');
+        const panel = document.getElementById('chat-panel');
+        const closeBtn = document.getElementById('chat-close');
+        const form = document.getElementById('chat-form');
+        const input = document.getElementById('chat-input');
+        const messages = document.getElementById('chat-messages');
+
+        if (!toggle || !panel || !form || !input || !messages) return; // nothing to do if markup missing
+
+        function openChat() {
+            panel.style.display = 'flex';
+            panel.setAttribute('aria-hidden', 'false');
+            input.focus();
+            // add welcome if empty
+            if (!messages.querySelector('.msg')) {
+                addBotMessage("Hi 😊");
+            }
+        }
+        function closeChat() {
+            panel.style.display = 'none';
+            panel.setAttribute('aria-hidden', 'true');
+            toggle.focus();
+        }
+
+        // toggle open/close when main button clicked
+        toggle.addEventListener('click', () => {
+            const visible = panel.style.display === 'flex';
+            if (visible) closeChat(); else openChat();
+        });
+
+        // close button inside panel (if present)
+        if (closeBtn) closeBtn.addEventListener('click', closeChat);
+
+        function addMessage(text, cls = 'user') {
+            const msg = document.createElement('div');
+            msg.className = `msg ${cls}`;
+            msg.textContent = text;
+            messages.appendChild(msg);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        function addBotMessage(text) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'msg bot typing';
+            placeholder.textContent = '...';
+            messages.appendChild(placeholder);
+            messages.scrollTop = messages.scrollHeight;
+            setTimeout(() => {
+                placeholder.remove();
+                addMessage(text, 'bot');
+            }, 600 + Math.min(1200, text.length * 10));
+        }
+
+        // simple QA (keeps existing behavior if present elsewhere)
+        const kb = {
+            name: 'Nessrine',
+            role: 'Data and Web Technologies Engineer',
+            experience: '5+ years building web applications and data-driven systems',
+            skills: ['HTML','CSS','JavaScript','Python','Django','React','AI / Machine Learning','Data Science'],
+            services: ['Web Development','UI/UX Design','AI & Data Science'],
+            contactEmail: 'cheblinesrine69@gmail.com',
+            contactPhone: '+213782307873',
+            cvLink: 'cv.pdf'
+        };
+
+        function answerQuery(q) {
+            q = q.toLowerCase();
+            if (/(name|who are you|who is)/.test(q)) return `My name is ${kb.name}. I'm a ${kb.role}.`;
+            if (/(experience|years|experienced)/.test(q)) return kb.experience + '.';
+            if (/(skill|skills|technologies|tech)/.test(q)) return `Key skills: ${kb.skills.join(', ')}.`;
+            if (/(service|services|offer|what do you do)/.test(q)) return `Services: ${kb.services.join(', ')}.`;
+            if (/(ai|machine learning|data science)/.test(q)) return 'I build ML models, data pipelines, analytics dashboards, and integrate AI features into web apps.';
+            if (/(contact|email|phone)/.test(q)) return `Email: ${kb.contactEmail}. Phone: ${kb.contactPhone}.`;
+            if (/(cv|resume|download)/.test(q)) return `You can download the CV here: ${kb.cvLink}`;
+            if (/(portfolio|projects|work)/.test(q)) return 'Projects are showcased in the Projects section.';
+            return "I can answer questions about Nessrine's skills, services, experience, contact details, and CV. Try: \"What services do you offer?\" or \"What's your experience with Python?\"";
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = input.value.trim();
+            if (!text) return;
+            addMessage(text, 'user');
+            input.value = '';
+            const reply = answerQuery(text);
+            addBotMessage(reply);
+        });
+
+        // keyboard shortcut to open chat: Ctrl+/
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === '/') {
+                const visible = panel.style.display === 'flex';
+                if (visible) closeChat(); else openChat();
+            }
+        });
+
+        // start closed
+        panel.style.display = 'none';
+    });
+})();

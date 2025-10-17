@@ -5,12 +5,12 @@
     <meta name="port" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/cv.png">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Portfolio</title>
 </head>
 <body>
     <!-- Navbar -->   
-     
     <nav>
         <div class="nav-container">
             <div class="logo">Port<span>folio</span></div>
@@ -21,9 +21,7 @@
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
                 <a href="#services">Services</a>
-                
                 <a href="#contact">Contact</a>
-                <a href="javascript:void(0);" onclick="openChatbot()"><img src="images/chatbot.png" alt="Chatbot Icon" class="chatbot-icon" onclick="openChatbot()"></a>
             </div>
     
             <!-- Hamburger Icon -->
@@ -47,51 +45,6 @@
         </div>
     </div>
 
-    <!-- Hidden Popup Chatbot Modal -->
-
-    <div id="chatbotModal" class="modal">
-        <div class="modal-contentt">
-            
-            <!-- HISTORY SIDEBAR -->
-            <div id="chatHistory" class="history-sidebar">
-                <h3> Chat History </h3>
-                <div id="historyMessages"></div>
-            </div>
-    
-            <!-- HISTORY BUTTON -->
-            <button id="historyButton" class="history-btn" onclick="toggleHistory()">
-                <img src="images/symbole-dinterface-dhistorique-de-navigation-dune-horloge-avec-une-fleche.png" alt="History" />
-            </button>
-    
-            <!-- CLOSE BUTTON -->
-            <span class="close-btn" onclick="closeChatbot()">&times;</span>
-
-            <!-- DARK/LIGHT MODE TOGGLE BUTTON -->
-            <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()">🌓</button>
-    
-            <!-- CHATBOT SECTION -->
-            <section id="chatbot">
-                <h2>
-                    <span class="emoji-bounce">🤖</span> 
-                    <span class="chatbot-title-text">How can I help you today ?</span> 
-                    <span class="emoji-pulse">💬</span>
-                  </h2>
-                  
-                  
-                <div class="input-container">
-                    <span id="emojiUser" class="emoji-wave">🧑</span>
-                    <input type="text" id="userInput" placeholder="Ask me anything..." oninput="animateUserEmoji()">
-                    <button onclick="askAIFromInput()" class="icon-btn">
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </div>
-                
-                <p id="ai-response">[Chatbot response will appear here]</p>
-            </section>
-        </div>
-    </div>
-    
-
     <!--home-->
     <section id="home">
         <div class="main-container">
@@ -99,11 +52,11 @@
                 <img src="images/main.jpg" alt="Profile Photo">
             </div>
             <div class="content">
-                <h1>Hi I'm <span>Nessrine & Aya</span></h1>
+                <h1>Hi I'm <span>Nessrine</span></h1>
                 <div class="typewriter">
                     I'm a <span class="typewriter-text"></span>
                 </div>
-                <p>I'm a passionate web developer and designer with over 5 years of experience creating elegant, functional, and user-centered digital experiences. Focused on building applications with React, Vue, and other cutting-edge technologies.</p>
+               <p>I'm a data and web technologies engineer passionate about transforming complex data into smart and interactive web solutions. I build modern, responsive web applications and develop data-driven systems using machine learning, artificial intelligence, and advanced analytics. My goal is to create meaningful digital experiences where data meets design.</p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/share/1YJRwCnsiz/" target="_blank" id="facebook-link" class="w-12 h-12 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white flex items-center justify-center transition-all">
                         <i class="fab fa-facebook-f text-xl"></i>
@@ -267,7 +220,32 @@
                         <div class="skill-progress">
                             <div class="progress-line" style="width: 75%;"></div>
                         </div>
-                    </div>                      
+                    </div>    
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <i class="fa-solid fa-robot" style="color:#ff6f91; font-size:28px; margin-right:10px;"></i>
+                                <p>AI / Machine Learning</p>
+                            </div>
+                            <p class="skill-percentage">82%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 82%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <div class="skill-left">
+                                <i class="fa-solid fa-database" style="color:#ff6f91; font-size:28px; margin-right:10px;"></i>
+                                <p>Data Science</p>
+                            </div>
+                            <p class="skill-percentage">88%</p>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-line" style="width: 88%;"></div>
+                        </div>
+                    </div>                  
             </div>
         </div>
     </section>
@@ -293,6 +271,13 @@
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI & Data Science</h3>
+                    <p>Building machine learning models, data pipelines, and analytics dashboards to turn data into actionable insights and intelligent features.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h3>Mobile Development</h3>
@@ -312,13 +297,7 @@
                     <h3>Content Creation</h3>
                     <p>Producing high-quality content including graphics, videos, and written material for your digital platforms.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Digital Marketing</h3>
-                    <p>Developing comprehensive digital marketing strategies to increase your online presence and engage your target audience.</p>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -464,8 +443,6 @@
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            
-                            <p>dalacheaya635@gmail.com</p>
                             <p>cheblinesrine69@gmail.com</p>
                         </div>
                     </div>
@@ -473,24 +450,12 @@
                         <i class="fas fa-phone"></i>
                         <div>
                             
-                            <p>+2136987125883</p>
+                            <p>+213782307873</p>
                         </div>
                     </div>
                 </div>
             </div>
     
-            <!-- Middle: Quick Links -->
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
     
             <!-- Right: Contact Form -->
             <div class="footer-social">
@@ -507,6 +472,28 @@
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <!-- Chatbot -->
+    <div id="chatbot" aria-live="polite">
+        <button id="chat-toggle" aria-label="Open chat" class="chat-toggle">
+            <i class="fas fa-brain"></i>
+        </button>
+
+        <div id="chat-panel" role="dialog" aria-label="Chat with Nessrine" aria-hidden="true">
+            <header class="chat-header">
+                <div>
+                    <strong>Nessrine Assistant</strong>
+                </div>
+                <button id="chat-close" aria-label="Close chat" class="chat-close">&times;</button>
+            </header>
+
+            <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
+
+            <form id="chat-form" class="chat-form" autocomplete="off">
+                <input id="chat-input" type="text" placeholder="Ask a question..." aria-label="Ask a question">
+                <button type="submit" id="chat-send" aria-label="Send">Send</button>
+            </form>
+        </div>
+    </div>
+  
 </body>
 </html>
