@@ -317,7 +317,6 @@ if (portfolioLink) {
 
 /* Chatbot toggle  */
 (function () {
-    // wait until DOM ready (script.js already runs at end but guard anyway)
     document.addEventListener('DOMContentLoaded', () => {
         const toggle = document.getElementById('chat-toggle');
         const panel = document.getElementById('chat-panel');
@@ -326,15 +325,20 @@ if (portfolioLink) {
         const input = document.getElementById('chat-input');
         const messages = document.getElementById('chat-messages');
 
-        if (!toggle || !panel || !form || !input || !messages) return; // nothing to do if markup missing
+        if (!toggle || !panel || !form || !input || !messages) return;
 
+        // 🔔 أصوات
+        const sendSound = new Audio('https://cdn.pixabay.com/download/audio/2021/08/04/audio_15e97eeb22.mp3?filename=message-pop-1.mp3');
+        const replySound = new Audio('https://cdn.pixabay.com/download/audio/2021/09/23/audio_7f379d8758.mp3?filename=click-124467.mp3');
+
+        // 🟢 فتح وغلق
         function openChat() {
             panel.style.display = 'flex';
             panel.setAttribute('aria-hidden', 'false');
             input.focus();
-            // add welcome if empty
             if (!messages.querySelector('.msg')) {
-                addBotMessage("Hi 😊");
+                addBotMessage("Hi 😊 I'm <b>Nessrine's assistant</b>! How can I help you today?");
+                showQuickReplies();
             }
         }
         function closeChat() {
@@ -343,70 +347,139 @@ if (portfolioLink) {
             toggle.focus();
         }
 
-        // toggle open/close when main button clicked
         toggle.addEventListener('click', () => {
             const visible = panel.style.display === 'flex';
             if (visible) closeChat(); else openChat();
         });
-
-        // close button inside panel (if present)
         if (closeBtn) closeBtn.addEventListener('click', closeChat);
 
+        // 💬 رسائل
         function addMessage(text, cls = 'user') {
             const msg = document.createElement('div');
             msg.className = `msg ${cls}`;
-            msg.textContent = text;
+            msg.innerHTML = text;
             messages.appendChild(msg);
             messages.scrollTop = messages.scrollHeight;
         }
+
+        // ✨ تأثير الكتابة
         function addBotMessage(text) {
-            const placeholder = document.createElement('div');
-            placeholder.className = 'msg bot typing';
-            placeholder.textContent = '...';
-            messages.appendChild(placeholder);
+            const typing = document.createElement('div');
+            typing.className = 'msg bot typing';
+            typing.textContent = '...';
+            messages.appendChild(typing);
             messages.scrollTop = messages.scrollHeight;
+
             setTimeout(() => {
-                placeholder.remove();
-                addMessage(text, 'bot');
-            }, 600 + Math.min(1200, text.length * 10));
+                typing.remove();
+                typeEffect(text, 'bot');
+                replySound.play();
+                showQuickReplies();
+            }, 700);
         }
 
-        // simple QA (keeps existing behavior if present elsewhere)
+        function typeEffect(text, cls) {
+            const msg = document.createElement('div');
+            msg.className = `msg ${cls}`;
+            messages.appendChild(msg);
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    msg.innerHTML = text.substring(0, i + 1);
+                    messages.scrollTop = messages.scrollHeight;
+                    i++;
+                    setTimeout(type, 15);
+                }
+            }
+            type();
+        }
+
+        // 🧠 قاعدة بيانات
         const kb = {
             name: 'Nessrine',
-            role: 'Data and Web Technologies Engineer',
-            experience: '5+ years building web applications and data-driven systems',
-            skills: ['HTML','CSS','JavaScript','Python','Django','React','AI / Machine Learning','Data Science'],
-            services: ['Web Development','UI/UX Design','AI & Data Science'],
+            role: 'Data & Web Technologies Engineer',
+            experience: 'I have strong experience building intelligent, data-driven web platforms.',
+            skills: ['Python', 'Django', 'JavaScript', 'React', 'AI', 'Data Science'],
+            services: ['Web Development', 'AI Integration', 'Data Analysis'],
             contactEmail: 'cheblinesrine69@gmail.com',
-            contactPhone: '+213782307873',
-            cvLink: 'cv.pdf'
+            cvLink: 'cv.pdf',
+            socials: {
+                linkedin: 'https://www.linkedin.com/in/chebli-nessrine-966a2b383',
+                github: 'https://github.com/cheblinessrine',
+                facebook: 'https://www.facebook.com/share/1YJRwCnsiz/'
+            }
         };
 
+        // 🤖 الردود الذكية
         function answerQuery(q) {
             q = q.toLowerCase();
-            if (/(name|who are you|who is)/.test(q)) return `My name is ${kb.name}. I'm a ${kb.role}.`;
-            if (/(experience|years|experienced)/.test(q)) return kb.experience + '.';
-            if (/(skill|skills|technologies|tech)/.test(q)) return `Key skills: ${kb.skills.join(', ')}.`;
-            if (/(service|services|offer|what do you do)/.test(q)) return `Services: ${kb.services.join(', ')}.`;
-            if (/(ai|machine learning|data science)/.test(q)) return 'I build ML models, data pipelines, analytics dashboards, and integrate AI features into web apps.';
-            if (/(contact|email|phone)/.test(q)) return `Email: ${kb.contactEmail}. Phone: ${kb.contactPhone}.`;
-            if (/(cv|resume|download)/.test(q)) return `You can download the CV here: ${kb.cvLink}`;
-            if (/(portfolio|projects|work)/.test(q)) return 'Projects are showcased in the Projects section.';
-            return "I can answer questions about Nessrine's skills, services, experience, contact details, and CV. Try: \"What services do you offer?\" or \"What's your experience with Python?\"";
+
+            if (/(name|who|about)/.test(q))
+                return `I'm <b>${kb.name}</b> — ${kb.role} 💻`;
+
+            if (/(experience|years)/.test(q))
+                return kb.experience;
+
+            if (/(skill|skills|technologies)/.test(q))
+                return `Key skills: ${kb.skills.join(', ')}.`;
+
+            if (/(service|offer|work)/.test(q))
+                return `I provide: ${kb.services.join(', ')}.`;
+
+            if (/(cv|resume)/.test(q))
+                return `Here’s my CV — feel free to check it out 👉 <a href="${kb.cvLink}" target="_blank">Download CV</a>`;
+
+            if (/(contact|email|social|linkedin|facebook|github)/.test(q))
+                return `
+                    You can reach me here 📬<br>
+                    ✉️ <a href="mailto:${kb.contactEmail}">${kb.contactEmail}</a><br>
+                    💼 <a href="${kb.socials.linkedin}" target="_blank">LinkedIn</a><br>
+                    💻 <a href="${kb.socials.github}" target="_blank">GitHub</a><br>
+                    🌸 <a href="${kb.socials.facebook}" target="_blank">Facebook</a>
+                `;
+
+            return "I can tell you about my skills, services, or experience. Try: “Show me your skills” 😊";
         }
 
+        // ⚡ أزرار سريعة
+        function showQuickReplies() {
+            const old = document.querySelector('.quick-replies');
+            if (old) old.remove();
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'quick-replies';
+
+            const options = ['Services', 'Skills', 'About', 'Contact'];
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'quick-btn';
+                btn.textContent = opt;
+                btn.addEventListener('click', () => {
+                    addMessage(opt, 'user');
+                    sendSound.play();
+                    const reply = answerQuery(opt);
+                    addBotMessage(reply);
+                });
+                wrapper.appendChild(btn);
+            });
+
+            messages.appendChild(wrapper);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        // 📨 إرسال الرسائل
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const text = input.value.trim();
             if (!text) return;
             addMessage(text, 'user');
+            sendSound.play();
             input.value = '';
             const reply = answerQuery(text);
             addBotMessage(reply);
         });
 
-        // keyboard shortcut to open chat: Ctrl+/
+        // ⌨️ اختصار Ctrl+/
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey && e.key === '/') {
                 const visible = panel.style.display === 'flex';
@@ -414,7 +487,6 @@ if (portfolioLink) {
             }
         });
 
-        // start closed
         panel.style.display = 'none';
     });
 })();

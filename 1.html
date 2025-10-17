@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nessrine Chatbot</title>
+<style>
+/* 🌸 تصميم واجهة البوت */
+#chat-toggle {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(135deg, #ff6f91, #c58fb3);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  z-index: 1000;
+}
+#chat-toggle:hover { transform: scale(1.1); }
+
+#chat-panel {
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  width: 340px;
+  height: 420px;
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  overflow: hidden;
+  z-index: 999;
+}
+
+#chat-header {
+  background: linear-gradient(90deg, #ff6f91, #c58fb3);
+  color: #fff;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+}
+#chat-close {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.msg {
+  max-width: 85%;
+  margin: 6px 0;
+  padding: 8px 12px;
+  border-radius: 14px;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.msg.user {
+  background: #ff6f91;
+  color: #fff;
+  align-self: flex-end;
+  margin-left: auto;
+}
+.msg.bot {
+  background: #f1f1f1;
+  color: #333;
+}
+.msg.typing {
+  opacity: 0.6;
+}
+
+#chat-form {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+#chat-input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+}
+#chat-send {
+  background: #ff6f91;
+  color: white;
+  border: none;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#chat-send:hover { background: #c58fb3; }
+
+/* 🌸 أزرار سريعة */
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.quick-btn {
+  background: linear-gradient(90deg, #ff6f91, #c58fb3);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+.quick-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+</style>
+</head>
+<body>
+
+<!-- 🌸 زر البوت -->
+<button id="chat-toggle">💬</button>
+
+<!-- 🌸 واجهة البوت -->
+<div id="chat-panel" aria-hidden="true">
+  <div id="chat-header">
+    Nessrine Bot 🤖
+    <button id="chat-close">&times;</button>
+  </div>
+  <div id="chat-messages"></div>
+  <form id="chat-form">
+    <input id="chat-input" type="text" placeholder="Type a message..." autocomplete="off">
+    <button id="chat-send">➤</button>
+  </form>
+</div>
+
+<script>
+(function () {
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('chat-toggle');
+        const panel = document.getElementById('chat-panel');
+        const closeBtn = document.getElementById('chat-close');
+        const form = document.getElementById('chat-form');
+        const input = document.getElementById('chat-input');
+        const messages = document.getElementById('chat-messages');
+
+        if (!toggle || !panel || !form || !input || !messages) return;
+
+        // 🟢 فتح وغلق الشات
+        function openChat() {
+            panel.style.display = 'flex';
+            panel.setAttribute('aria-hidden', 'false');
+            input.focus();
+            if (!messages.querySelector('.msg')) {
+                addBotMessage("Hi 😊 I'm Nessrine's assistant! How can I help you?");
+                showQuickReplies();
+            }
+        }
+        function closeChat() {
+            panel.style.display = 'none';
+            panel.setAttribute('aria-hidden', 'true');
+            toggle.focus();
+        }
+
+        toggle.addEventListener('click', () => {
+            const visible = panel.style.display === 'flex';
+            if (visible) closeChat(); else openChat();
+        });
+        if (closeBtn) closeBtn.addEventListener('click', closeChat);
+
+        // 💬 عرض الرسائل
+        function addMessage(text, cls = 'user') {
+            const msg = document.createElement('div');
+            msg.className = `msg ${cls}`;
+            msg.innerHTML = text;
+            messages.appendChild(msg);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function addBotMessage(text) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'msg bot typing';
+            placeholder.textContent = '...';
+            messages.appendChild(placeholder);
+            messages.scrollTop = messages.scrollHeight;
+
+            setTimeout(() => {
+                placeholder.remove();
+                addMessage(text, 'bot');
+                showQuickReplies();
+            }, 600 + Math.min(1200, text.length * 10));
+        }
+
+        // 🧠 بيانات نسرين
+        const kb = {
+            name: 'Nessrine',
+            role: 'Data & Web Technologies Engineer',
+            experience: 'I have solid experience building smart, data-driven web apps.',
+            skills: ['Python', 'Django', 'JavaScript', 'React', 'AI', 'Data Science'],
+            services: ['Web Development', 'AI Integration', 'Data Analysis'],
+            contactEmail: 'cheblinesrine69@gmail.com',
+            cvLink: 'cv.pdf',
+            socials: {
+                linkedin: 'https://www.linkedin.com/in/nessrine',
+                github: 'https://github.com/nessrine',
+                facebook: 'https://www.facebook.com/nessrine'
+            }
+        };
+
+        // 🤖 الردود الذكية
+        function answerQuery(q) {
+            q = q.toLowerCase();
+
+            if (/(name|who|about)/.test(q))
+                return "I'm <b>Nessrine</b> — Data & Web Technologies Engineer 💻";
+
+            if (/(experience|years)/.test(q))
+                return kb.experience;
+
+            if (/(skill|skills)/.test(q))
+                return "Main skills: " + kb.skills.join(', ') + ".";
+
+            if (/(service|offer)/.test(q))
+                return "I provide: " + kb.services.join(', ') + ".";
+
+            if (/(cv|resume)/.test(q))
+                return `Here’s my CV — feel free to check it out 👉 <a href='${kb.cvLink}' target='_blank'>Download CV</a>`;
+
+            if (/(contact|email|social|linkedin|facebook|github)/.test(q))
+                return `
+                You can reach me here 📬<br>
+                ✉️ <a href="mailto:${kb.contactEmail}">${kb.contactEmail}</a><br>
+                💼 <a href="${kb.socials.linkedin}" target="_blank">LinkedIn</a><br>
+                💻 <a href="${kb.socials.github}" target="_blank">GitHub</a><br>
+                🌸 <a href="${kb.socials.facebook}" target="_blank">Facebook</a>
+                `;
+
+            return "I can tell you about my skills, services, or experience. Try: “Show me your skills” 😊";
+        }
+
+        // ✨ أزرار سريعة
+        function showQuickReplies() {
+            const old = document.querySelector('.quick-replies');
+            if (old) old.remove();
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'quick-replies';
+
+            const options = ['Services', 'Skills', 'About', 'Contact'];
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'quick-btn';
+                btn.textContent = opt;
+                btn.addEventListener('click', () => {
+                    addMessage(opt, 'user');
+                    const reply = answerQuery(opt);
+                    addBotMessage(reply);
+                });
+                wrapper.appendChild(btn);
+            });
+
+            messages.appendChild(wrapper);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        // 📩 إرسال الرسالة
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = input.value.trim();
+            if (!text) return;
+            addMessage(text, 'user');
+            input.value = '';
+            const reply = answerQuery(text);
+            addBotMessage(reply);
+        });
+
+        // ⌨️ اختصار Ctrl+/
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === '/') {
+                const visible = panel.style.display === 'flex';
+                if (visible) closeChat(); else openChat();
+            }
+        });
+
+        panel.style.display = 'none';
+    });
+})();
+</script>
+</body>
+</html>

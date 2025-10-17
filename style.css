@@ -1401,3 +1401,30 @@ a[href^="#d49dd7"], .purple, .purple-text {
 #chat-panel { display:none; }
 /* Responsive */
 @media (max-width:420px){ #chat-panel{ width:92vw; height:58vh; right:12px; bottom:84px; } }
+
+/* 🌸 Quick Replies styling */
+.quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+    padding-top: 6px;
+}
+
+.quick-btn {
+    background: linear-gradient(90deg, var(--primary,#ff6f91), var(--accent,#c58fb3));
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.quick-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background: linear-gradient(90deg, var(--accent,#c58fb3), var(--primary,#ff6f91));
+}
