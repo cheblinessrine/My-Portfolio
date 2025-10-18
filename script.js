@@ -328,8 +328,8 @@ if (portfolioLink) {
         if (!toggle || !panel || !form || !input || !messages) return;
 
         // 🔔 أصوات
-        const sendSound = new Audio('https://cdn.pixabay.com/download/audio/2021/08/04/audio_15e97eeb22.mp3?filename=message-pop-1.mp3');
-        const replySound = new Audio('https://cdn.pixabay.com/download/audio/2021/09/23/audio_7f379d8758.mp3?filename=click-124467.mp3');
+        const sendSound = new Audio('sounds/message_send.mp3');
+        const replySound = new Audio('sounds/message_send.mp3');
 
         // 🟢 فتح وغلق
         function openChat() {
@@ -376,6 +376,45 @@ if (portfolioLink) {
                 replySound.play();
                 showQuickReplies();
             }, 700);
+        }
+        // 🎙️ Speech Recognition (voice to text)
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.lang = "en-US"; // يمكنك تغييرها إلى "ar-DZ" للعربية
+        recognition.interimResults = false;
+
+        const micBtn = document.createElement("button");
+        micBtn.innerHTML = "🎙️";
+        micBtn.id = "mic-btn";
+        micBtn.style.background = "transparent";
+        micBtn.style.border = "none";
+        micBtn.style.fontSize = "20px";
+        micBtn.style.cursor = "pointer";
+        document.querySelector(".chat-form").appendChild(micBtn);
+
+        micBtn.addEventListener("click", () => {
+            recognition.start();
+            micBtn.textContent = "🎧 Listening...";
+        });
+
+        recognition.onresult = (event) => {
+            const speechText = event.results[0][0].transcript;
+            addMessage(speechText, "user");
+            const reply = answerQuery(speechText);
+            addBotMessage(reply);
+            speak(reply); // تحويل الرد إلى صوت
+            micBtn.textContent = "🎙️";
+        };
+
+        recognition.onerror = () => {
+            micBtn.textContent = "🎙️";
+        };
+
+        // 🔊 Text to Speech (bot voice)
+        function speak(text) {
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = "en-US"; // يمكنك وضع "ar-DZ" للعربية
+            speechSynthesis.speak(utter);
         }
 
         function typeEffect(text, cls) {
@@ -438,7 +477,7 @@ if (portfolioLink) {
                     🌸 <a href="${kb.socials.facebook}" target="_blank">Facebook</a>
                 `;
 
-            return "I can tell you about my skills, services, or experience. Try: “Show me your skills” 😊";
+            return "I can share details about my skills, services, or professional experience. How can I assist you?";
         }
 
         // ⚡ أزرار سريعة
