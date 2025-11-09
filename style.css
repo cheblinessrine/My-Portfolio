@@ -762,6 +762,31 @@ svg .progress {
 }
 
 
+/* أزرار داخل الـ Modal */
+.modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.modal-buttons .btn {
+    padding: 8px 20px;
+    background: rgba(255,255,255,0.92);
+    color: var(--primary);
+    border: 1px solid rgba(229,108,163,0.12);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.modal-buttons .btn:hover {
+    background-color: white;
+    color: #d49dd7;
+}
+
 /* Project Modal Styles */
 .project-modal {
     display: none;
@@ -1428,3 +1453,4 @@ a[href^="#d49dd7"], .purple, .purple-text {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     background: linear-gradient(90deg, var(--accent,#c58fb3), var(--primary,#ff6f91));
 }
+

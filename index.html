@@ -303,132 +303,69 @@
         </div>
     </section>
 
-    <!--project-->
-    <section id="projects">
-        <div class="projects-container">
-            <h2 class="section-title">Latest <span>Projects</span></h2>
-            <div class="portfolio-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="ui-design">UI Design</button>
-                <button class="filter-btn" data-filter="web-dev">Web Dev</button>
-                <button class="filter-btn" data-filter="web-3d">WEB 3D</button>
-                <button class="filter-btn" data-filter="ai">AI</button>
-                <button class="filter-btn" data-filter="mobile">Mobile</button>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-item ui-design">
-                    <div class="project-image">
-                        <img src="images/high-protein-meal-with-smartphone-arrangement.jpg" alt="Foodie App UI">
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3>Foodie App Redesign</h3>
-                                <p>UI/UX Design</p>
-                                <button class="view-project-btn" data-id="project1">View Details</button>
-                            </div>
-                        </div>
-                    </div>
+   <!--project-->
+        <section id="projects">
+            <div class="projects-container">
+                <h2 class="section-title">Latest <span>Projects</span></h2>
+
+                <div class="portfolio-filter">
+                    <button class="filter-btn" data-filter="web-3d">WEB 3D</button>
                 </div>
-                <!-- Project 2 -->
-                <div class="project-item web-dev">
-                    <div class="project-image">
-                        <img src="images/6873171.jpg" alt="E-commerce Website">
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3>Ecoshop E-commerce</h3>
-                                <p>Web Development</p>
-                                <button class="view-project-btn" data-id="project2">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="project-item mobile ui-design">
-                    <div class="project-image">
-                        <img src="images/fittness.jpg" alt="Mindfulness App">
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3>Mindfulness App</h3>
-                                <p>UI/UX Design</p>
-                                <button class="view-project-btn" data-id="project3">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 4 -->
-                <div class="project-item web-dev">
-                    <div class="project-image">
-                        <img src="images/2955695.jpg" alt="Travel Buddy">
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3>Travel Buddy Website</h3>
-                                <p>Web Development</p>
-                                <button class="view-project-btn" data-id="project4">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 5 -->
-                <div class="project-item mobile ui-design">
-                    <div class="project-image">
-                        <img src="images/3864158.jpg" alt="Fitness Tracker App">
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3>Fitness Tracker App</h3>
-                                <p>UI/UX Design</p>
-                                <button class="view-project-btn" data-id="project5">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 6 -->
-                <div class="project-item web-dev">
-                    <div class="project-image">
-                        <img src="images/3219080.jpg" alt="Portfolio Dashboard">
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <h3>Finance Dashboard</h3>
-                                <p>Web Development</p>
-                                <button class="view-project-btn" data-id="project6">View Details</button>
+
+                <div class="projects-grid">
+                    <!-- Project 7: Prismatic Light Refraction -->
+                    <div class="project-item web-3d">
+                        <div class="project-image">
+                            <img src="images/prism.png" alt="Prismatic Light Refraction Project">
+                            <div class="project-overlay">
+                                <div class="project-info">
+                                    <h3>Prismatic Light Refraction</h3>
+                                    <p>web-3d</p>
+                                    <button class="view-project-btn" data-id="project7">View Details</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Project Modal Template -->
-        <div class="project-modal" id="projectModal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <div class="modal-body">
-                    <div class="modal-image-container">
-                        <img id="modalImage" src="" alt="Project Image">
-                    </div>
-                    <div class="modal-details">
-                        <h2 id="modalTitle"></h2>
-                        <p class="modal-category" id="modalCategory"></p>
-                        <div class="modal-description" id="modalDescription"></div>
-                        <div class="modal-meta">
-                            <div class="meta-item">
-                                <h4>Client</h4>
-                                <p id="modalClient"></p>
+
+            <!-- Project Modal Template -->
+            <div class="project-modal" id="projectModal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div class="modal-body">
+                        <div class="modal-image-container">
+                            <img id="modalImage" src="" alt="Project Image">
+                        </div>
+                        <div class="modal-details">
+                            <h2 id="modalTitle"></h2>
+                            <p class="modal-category" id="modalCategory"></p>
+                            <div class="modal-description" id="modalDescription"></div>
+                            <div class="modal-meta">
+                                <div class="meta-item">
+                                    <h4>Client</h4>
+                                    <p id="modalClient"></p>
+                                </div>
+                                <div class="meta-item">
+                                    <h4>Date</h4>
+                                    <p id="modalDate"></p>
+                                </div>
+                                <div class="meta-item">
+                                    <h4>Skills</h4>
+                                    <p id="modalSkills"></p>
+                                </div>
                             </div>
-                            <div class="meta-item">
-                                <h4>Date</h4>
-                                <p id="modalDate"></p>
-                            </div>
-                            <div class="meta-item">
-                                <h4>Skills</h4>
-                                <p id="modalSkills"></p>
+
+                            <!-- ✅ أزرار فتح الملفات -->
+                            <div class="modal-buttons">
+                                <a id="modalBlenderBtn" href="#" download class="btn">Download Blender File</a>
+                                <a id="modalReportBtn" href="#" target="_blank" class="btn">View Report</a>
                             </div>
                         </div>
-                        <!-- Visit Project button has been removed from here -->
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
     <h2 class="section-title">Contact <span>Me</span></h2>
