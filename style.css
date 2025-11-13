@@ -842,6 +842,9 @@ svg .progress {
     min-width: 300px;
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .modal-image-container img {
     width: 100%;

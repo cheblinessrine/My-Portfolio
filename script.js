@@ -72,21 +72,21 @@ document.addEventListener('DOMContentLoaded', function() {
         project2: {
             title: "Prismatic Light Refraction",
             category: "web-3d",
-            description: `
-               A 3D Blender project simulating boiling water in a glass container. Created using Principled BSDF, Voronoi textures, and particle systems to animate realistic bubbles, surface movement, and light refraction.         `,
+            description: `A 3D Blender project simulating boiling water in a glass container...`,
             video: "assets/BoilingWater.mkv",
-            image: "assets/Boilingwater.png", // Project image
+            image: "assets/Boilingwater.png",
             client: "Academic Project",
             date: "2025",
             skills: "Blender, Shading, Lighting, Rendering",
-            blenderFile: "assets/Boilingwater.blend", // Blender file
-            reportFile: "assets/Boilingwater.pdf"       // Report file
+            blenderFile: "assets/Boilingwater.blend",
+            reportFile: "assets/Boilingwater.pdf"
         },
         project3: {
             title: "ball",
             category: "web-3d",
-            description: `A meticulously crafted 3D ball model created in Blender, featuring intricate modeling, precise UV unwrapping, and realistic PBR texturing. The project showcases final lighting and rendering techniques.`,
-            video: "assets/ball.mkv",
+            description: `A meticulously crafted 3D ball model...`,
+            video: "assets/ball.mvk",
+            // Has video - will display video
             image: "assets/ball.png",
             client: "Personal Project",
             date: "2025",
@@ -153,6 +153,8 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 modalImage.src = project.image;
                 modalImage.style.display = 'block';
+                const videoElement = document.getElementById('modalVideo');
+                if (videoElement) videoElement.style.display = 'none';
             }
 
             modalTitle.textContent = project.title;
