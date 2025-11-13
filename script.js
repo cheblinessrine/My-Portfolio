@@ -69,18 +69,30 @@ document.addEventListener('DOMContentLoaded', function() {
             blenderFile: "assets/table.blend",
             reportFile: "assets/table.pdf"
         },
-        project7: {
+        project2: {
             title: "Prismatic Light Refraction",
             category: "web-3d",
             description: `
                A 3D Blender project simulating boiling water in a glass container. Created using Principled BSDF, Voronoi textures, and particle systems to animate realistic bubbles, surface movement, and light refraction.         `,
             image: "assets/Boilingwater.png", // Project image
+            video: "assets/BoilingWater.mkv",
             client: "Academic Project",
             date: "2025",
             skills: "Blender, Shading, Lighting, Rendering",
             blenderFile: "assets/Boilingwater.blend", // Blender file
             reportFile: "assets/Boilingwater.pdf"       // Report file
-        }
+        },
+        project3: {
+            title: "ball",
+            category: "web-3d",
+            description: `A meticulously crafted 3D ball model created in Blender, featuring intricate modeling, precise UV unwrapping, and realistic PBR texturing. The project showcases final lighting and rendering techniques.`,
+            image: "assets/ball.png",
+            client: "Personal Project",
+            date: "2025",
+            skills: "Blender, Modeling, Texturing, Lighting, Rendering",
+            blenderFile: "assets/ball.blend",
+            reportFile: "assets/ball.pdf"
+        },
     };
 
     // Filter
