@@ -63,10 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Prismatic Light Refraction",
             category: "web-3d",
             description: `
-                A 3D Blender project demonstrating light dispersion through a glass prism.
-                Created using Glass BSDF, Mix Shader, and Hue/Saturation nodes to achieve realistic refraction and color scattering.
-            `,
-            image: "images/prism.png",
+               A 3D Blender project simulating boiling water in a glass container. Created using Principled BSDF, Voronoi textures, and particle systems to animate realistic bubbles, surface movement, and light refraction.         `,
+            image: "assets/Boilingwater.png", // Project image
             client: "Academic Project",
             date: "2025",
             skills: "Blender, Shading, Lighting, Rendering",
