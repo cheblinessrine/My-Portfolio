@@ -905,31 +905,6 @@ svg .progress {
     box-shadow: 0 0 15px rgba(180, 100, 180, 0.2);
 }
 
-/*video*/
-
-.section-title h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #ffffff; /* White */
-    font-weight: bold;
-}
-
-.section-title span {
-    color: #8a2be2; /* Bright Purple */
-    text-shadow: 0 0 8px rgba(138, 43, 226, 0.8);
-}
-#portfolio-video {
-    text-align: center;
-    margin: 40px auto;
-    max-width: 900px;
-}
-
-iframe {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
 /*contact*/
 /* Footer Styles */
 footer {

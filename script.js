@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
             client: "Academic Project",
             date: "2025",
             skills: "Blender, Shading, Lighting, Rendering",
-            blenderFile: "assets/prism_project.blend", // Blender file
-            reportFile: "assets/prism_report.pdf"       // Report file
+            blenderFile: "assets/Boilingwater.blend", // Blender file
+            reportFile: "assets/Boilingwater.pdf"       // Report file
         }
     };
 
