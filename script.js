@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             category: "web-3d",
             description: `
                A 3D Blender project simulating boiling water in a glass container. Created using Principled BSDF, Voronoi textures, and particle systems to animate realistic bubbles, surface movement, and light refraction.         `,
+            video: "assets/BoilingWater.mkv",
             image: "assets/Boilingwater.png", // Project image
             client: "Academic Project",
             date: "2025",
@@ -85,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "ball",
             category: "web-3d",
             description: `A meticulously crafted 3D ball model created in Blender, featuring intricate modeling, precise UV unwrapping, and realistic PBR texturing. The project showcases final lighting and rendering techniques.`,
+            video: "assets/ball.mkv",
             image: "assets/ball.png",
             client: "Personal Project",
             date: "2025",
@@ -134,7 +136,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const projectId = this.getAttribute('data-id');
             const project = projectData[projectId];
 
-            modalImage.src = project.image;
+            // Display video or fallback to image
+            if (project.video) {
+                modalImage.style.display = 'none';
+                let videoElement = document.getElementById('modalVideo');
+                if (!videoElement) {
+                    videoElement = document.createElement('video');
+                    videoElement.id = 'modalVideo';
+                    videoElement.controls = true;
+                    videoElement.style.width = '100%';
+                    videoElement.style.borderRadius = '8px';
+                    modalImage.parentNode.insertBefore(videoElement, modalImage);
+                }
+                videoElement.src = project.video;
+                videoElement.style.display = 'block';
+            } else {
+                modalImage.src = project.image;
+                modalImage.style.display = 'block';
+            }
+
             modalTitle.textContent = project.title;
             modalCategory.textContent = project.category;
             modalDescription.innerHTML = project.description;
@@ -142,11 +162,9 @@ document.addEventListener('DOMContentLoaded', function() {
             modalDate.textContent = project.date;
             modalSkills.textContent = project.skills;
 
-            // Assign file links
             modalBlenderBtn.href = project.blenderFile;
             modalReportBtn.href = project.reportFile;
 
-            // Show modal
             projectModal.classList.add('show');
             document.body.style.overflow = 'hidden';
         });
