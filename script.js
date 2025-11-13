@@ -56,9 +56,19 @@ function eraseText() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-
     // Project data
     const projectData = {
+        project1: {
+            title: "TABLE",
+            category: "web-3d",
+            description: `A 3D table model created in Blender showcasing detailed modeling, UV unwrapping, PBR texturing, and final lighting & rendering. Includes source .blend and a short project report with workflow notes and render settings.`,
+            image: "assets/table.png",
+            client: "Personal Project",
+            date: "2025",
+            skills: "Blender, Modeling, Texturing, Lighting, Rendering",
+            blenderFile: "assets/table.blend",
+            reportFile: "assets/table.pdf"
+        },
         project7: {
             title: "Prismatic Light Refraction",
             category: "web-3d",
