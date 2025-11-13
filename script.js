@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
             description: `
                A 3D Blender project simulating boiling water in a glass container. Created using Principled BSDF, Voronoi textures, and particle systems to animate realistic bubbles, surface movement, and light refraction.         `,
             image: "assets/Boilingwater.png", // Project image
-            video: "assets/BoilingWater.mkv",
             client: "Academic Project",
             date: "2025",
             skills: "Blender, Shading, Lighting, Rendering",
