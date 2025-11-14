@@ -56,6 +56,12 @@ function eraseText() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize/typewriter start
+    textElements = document.getElementById('typewriter') || document.querySelector('.typewriter');
+    if (textElements) {
+        textElements.innerHTML = ''; // ensure empty before typing
+        setTimeout(typeWriter, 500);
+    }
     // Project data
     const projectData = {
         project1: {
@@ -85,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Elastic deformation of a material",
             category: "web-3d",
             description: `A Blender project demonstrating elastic deformation of a material under force using physics simulations`,
-            video: "assets/ball.mvk",
+            video: "assets/ball.mkv",
             image: "assets/ball.png",
             client: "Personal Project",
             date: "2025",
