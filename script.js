@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             reportFile: "assets/table.pdf"
         },
         project2: {
-            title: "Prismatic Light Refraction",
+            title: "Boiling Water",
             category: "web-3d",
             description: `A 3D Blender project simulating boiling water in a glass container...`,
             video: "assets/BoilingWater.mkv",
@@ -82,11 +82,10 @@ document.addEventListener('DOMContentLoaded', function() {
             reportFile: "assets/Boilingwater.pdf"
         },
         project3: {
-            title: "ball",
+            title: "Elastic deformation of a material",
             category: "web-3d",
-            description: `A meticulously crafted 3D ball model...`,
+            description: `A Blender project demonstrating elastic deformation of a material under force using physics simulations`,
             video: "assets/ball.mvk",
-            // Has video - will display video
             image: "assets/ball.png",
             client: "Personal Project",
             date: "2025",
