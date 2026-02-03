@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js CDN for 3D skills sphere -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
     <title>Portfolio</title>
 </head>
 <body>
@@ -86,6 +88,8 @@
     <!--skills-->
     <section id="skills">
         <h2 class="section-title">My <span>Skills</span></h2>
+        <!-- 3D Skills Sphere Orbital System -->
+        <div id="skills-3d-orbit"></div>
         <div class="skills-container">  
             <div class="skills-content">
                 <div class="skills-right">
@@ -410,13 +414,50 @@
     </section>
 
     <!-- Certeficates Section -->
-    <section id="certeficates" class="certeficates-section">
+    <section id="certificates" class="certificates-section">
         <div class="container">
-            <h2 class="section-title text-center mb-5" data-aos="fade-down">My Certeficates</h2>
-            <div class="scroll-container" data-aos="zoom-in" data-aos-delay="200">
-                <div class="scroll-content">
-                   <img src="images/cer1.png" alt="Certificate 1">
+            <h2 class="section-title">My <span>Certificates</span></h2>
+            <div class="certificates-wrapper">
+                <button class="scroll-btn scroll-left" id="scrollLeft" aria-label="Scroll left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="scroll-container" id="certificatesContainer">
+                    <div class="scroll-content">
+                        <div class="certificate-item">
+                            <img src="images/cer1.png" alt="Certificate 1">
+                            <div class="cert-overlay">
+                                <p>Certificate 1</p>
+                            </div>
+                        </div>
+                        <div class="certificate-item">
+                            <img src="images/cer2.png" alt="Certificate 2">
+                            <div class="cert-overlay">
+                                <p>Certificate 2</p>
+                            </div>
+                        </div>
+                        <div class="certificate-item">
+                            <img src="images/cer3.png" alt="Certificate 3">
+                            <div class="cert-overlay">
+                                <p>Certificate 3</p>
+                            </div>
+                        </div>
+                        <div class="certificate-item">
+                            <img src="images/cer4.png" alt="Certificate 4">
+                            <div class="cert-overlay">
+                                <p>Certificate 4</p>
+                            </div>
+                        </div>
+                        <div class="certificate-item">
+                            <img src="images/cer5.png" alt="Certificate 5">
+                            <div class="cert-overlay">
+                                <p>Certificate 5</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <button class="scroll-btn scroll-right" id="scrollRight" aria-label="Scroll right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
