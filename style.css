@@ -1432,3 +1432,48 @@ a[href^="#d49dd7"], .purple, .purple-text {
     background: linear-gradient(90deg, var(--accent,#c58fb3), var(--primary,#ff6f91));
 }
 
+
+/* CERTEFICATES SECTION */
+ .certeficates-section{
+  margin-top: 100px;
+ }
+.scroll-container {
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      padding: 40px 0;
+    }
+
+    .scroll-content {
+      display: inline-flex;
+      animation: scroll-left 25s linear infinite;
+    }
+
+    .scroll-content img {
+      height: 220px;
+      width: auto;
+      margin: 0 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+    }
+
+    .scroll-content img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Duplicate content for seamless looping */
+    .scroll-content::after {
+      content: "";
+      display: inline-block;
+    }
