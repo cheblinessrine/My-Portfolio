@@ -1,3 +1,57 @@
+@media (max-width: 600px) {
+    .skills-rotate-circle {
+        width: 250px;
+        height: 250px;
+    }
+    .skills-rotate-circle img,
+    .skills-rotate-circle i {
+        width: 40px;
+        height: 40px;
+        font-size: 32px;
+        padding: 4px;
+    }
+}
+
+/* Rotating Skills Circle */
+.skills-rotate-circle {
+    position: relative;
+    width: 520px;
+    height: 520px;
+    margin: 40px auto 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotateCircle 16s linear infinite;
+}
+.skills-rotate-circle .rotate-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* Dynamically space items based on total count */
+    --total: 16;
+    transform: translate(-50%, -50%) rotate(calc(360deg / var(--total) * var(--i))) translateY(-160px) rotate(calc(-360deg / var(--total) * var(--i)));
+    transition: transform 0.3s;
+}
+.skills-rotate-circle img,
+.skills-rotate-circle i,
+.skills-rotate-circle img,
+.skills-rotate-circle i {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    padding: 4px;
+    font-size: 32px;
+}
+.skills-rotate-circle .rotate-logo:hover {
+    /* No hover effect */
+}
+@keyframes rotateCircle {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 /* Certificates Carousel Styles */
 .certificates-carousel {
     width: 100%;
@@ -561,6 +615,25 @@ svg .progress {
     flex-wrap: wrap;
     gap: 120px; /* Add space between blocks */
 }
+    .skills-left, .skills-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .skills-left {
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .skills-rotate-circle {
+        margin-top: 0 !important;
+        margin-bottom: 32px;
+        align-self: flex-start;
+    }
+    
+    .skills-rotate-circle {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 
 .skills-left {
     width: 45%;
