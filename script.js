@@ -1,3 +1,15 @@
+// Certificates Carousel Auto-Scroll Logic
+document.addEventListener('DOMContentLoaded', function() {
+    const carouselTrack = document.querySelector('.carousel-track');
+    if (carouselTrack) {
+        // Duplicate images for seamless infinite scroll
+        const images = Array.from(carouselTrack.children);
+        images.forEach(img => {
+            const clone = img.cloneNode(true);
+            carouselTrack.appendChild(clone);
+        });
+    }
+});
 // Toggle menu function
 function toggleMenu() {
     let navLinks = document.getElementById("nav-links");
@@ -25,52 +37,6 @@ function cancel() {
     navbar.style.transform = "translateY(-500px)";
 }
 
-// ===== CERTIFICATE SCROLLING FUNCTIONALITY =====
-document.addEventListener('DOMContentLoaded', function() {
-    const scrollContainer = document.getElementById('certificatesContainer');
-    const scrollContent = scrollContainer.querySelector('.scroll-content');
-    const scrollLeftBtn = document.getElementById('scrollLeft');
-    const scrollRightBtn = document.getElementById('scrollRight');
-    const autoScrollToggle = document.getElementById('autoScroll');
-    
-    if (!scrollContainer) return; // Exit if certificates section doesn't exist
-    
-    let autoScrollEnabled = autoScrollToggle?.checked ?? true;
-    let autoScrollInterval;
-    
-    const scrollSpeed = 400; // pixels per scroll
-    
-    // Smooth scroll function
-    function smoothScroll(direction) {
-        if (autoScrollInterval) clearInterval(autoScrollInterval);
-        autoScrollEnabled = false;
-        if (autoScrollToggle) autoScrollToggle.checked = false;
-        
-        const currentScroll = scrollContainer.scrollLeft;
-        const targetScroll = currentScroll + (direction === 'left' ? -scrollSpeed : scrollSpeed);
-        const duration = 500; // ms
-        const startTime = performance.now();
-        
-        function animateScroll(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            scrollContainer.scrollLeft = currentScroll + (targetScroll - currentScroll) * progress;
-            
-            if (progress < 1) {
-                requestAnimationFrame(animateScroll);
-            }
-        }
-        
-        requestAnimationFrame(animateScroll);
-    }
-    
-    // Auto-scroll function
-    function startAutoScroll() {
-        if (autoScrollInterval) clearInterval(autoScrollInterval);
-        autoScrollInterval = setInterval(() => {
-            if (scrollContainer.scrollLeft + scrollContainer.offsetWidth >= scrollContent.offsetWidth - 10) {
-                scrollContainer.scrollLeft = 0;
-            } else {\n                scrollContainer.scrollLeft += 2;\n            }\n        }, 30);\n    }\n    \n    // Button event listeners\n    scrollLeftBtn?.addEventListener('click', () => smoothScroll('left'));\n    scrollRightBtn?.addEventListener('click', () => smoothScroll('right'));\n    \n    // Auto-scroll toggle\n    autoScrollToggle?.addEventListener('change', function() {\n        autoScrollEnabled = this.checked;\n        if (autoScrollEnabled) {\n            startAutoScroll();\n        } else {\n            if (autoScrollInterval) clearInterval(autoScrollInterval);\n        }\n    });\n    \n    // Start auto-scroll by default\n    if (autoScrollEnabled) {\n        startAutoScroll();\n    }\n    \n    // Pause auto-scroll on manual scroll or hover\n    scrollContainer.addEventListener('wheel', () => {\n        if (autoScrollInterval) clearInterval(autoScrollInterval);\n        autoScrollEnabled = false;\n        if (autoScrollToggle) autoScrollToggle.checked = false;\n    }, { passive: true });\n    \n    scrollContainer.addEventListener('mouseover', () => {\n        if (autoScrollInterval) clearInterval(autoScrollInterval);\n    });\n    \n    scrollContainer.addEventListener('mouseleave', () => {\n        if (autoScrollToggle?.checked) {\n            startAutoScroll();\n        }\n    });\n});\n\n// Typewriter Effect
 const texts = [
     "DEVELOPER",
     "DESIGNER",
