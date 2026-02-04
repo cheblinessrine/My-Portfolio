@@ -1,3 +1,47 @@
+/* Certificates Scrolling Section */
+.certificates-section {
+    margin: 40px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.certificates-section h2 {
+    margin-bottom: 16px;
+    font-size: 2em;
+    color: #333;
+}
+
+.certificates-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #eee;
+}
+
+.certificates-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+.certificates-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+.certificates-scroll::-webkit-scrollbar-track {
+    background: #eee;
+}
+
+.certificate-item {
+    height: 140px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
+}
+.certificate-item:hover {
+    transform: scale(1.05);
+}
 /* 3D Skills Sphere Orbital System */
 #skills-3d-orbit {
     width: 100%;
